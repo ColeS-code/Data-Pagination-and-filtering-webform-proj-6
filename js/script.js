@@ -81,7 +81,7 @@ function addPagination (list) {
 showPage();
 addPagination();
 
-
+//
 const searchBar = `
    <label for="search" class="student-search">
       <span>Search by name</span>
@@ -90,7 +90,7 @@ const searchBar = `
    </label>`;
 document.querySelector('.header').insertAdjacentHTML('beforeend', searchBar);
 
-
+//
 const search = document.querySelector('#search');
 const submit = document.querySelector('.student-search button');
 let studentMatches = [];
