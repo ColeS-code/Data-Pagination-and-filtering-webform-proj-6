@@ -3,9 +3,11 @@ Treehouse Techdegree: Data Pagination and Filtering
 */
 
 
-/*
-This function creates and inserts the neccessary elements needed to display a list or page, of nine students
-*/
+
+// sets the number of items per page
+let numOfItems = 9;
+
+// This function creates and inserts the neccessary elements needed to display a list/page, of nine students
 function showPage(list, page) {
    const startIndex = ( page * numOfItems ) - numOfItems;
    const endIndex = page * numOfItems;
@@ -31,10 +33,7 @@ function showPage(list, page) {
    }
 }
 
-
-/*
-A function to create and insert/append the elements needed for the pagination buttons
-*/
+// A function to create and insert/append the elements needed for the pagination buttons
 function addPagination (list) {
    const numOfPages = Math.ceil(list.length / numOfItems);
    const link_list = document.querySelector('.link-list');
@@ -65,18 +64,16 @@ function addPagination (list) {
    });
 }
 
-
 // Calls both functions above
 showPage(data, 1);
 addPagination(data);
 
 
 
+// Code for "Exceeds Expectations" -
 
-// code for "Exceeds Expectations" -
 
-
-// creates a search bar that the user can interact with to find a specific name
+// Creates a search bar that the user can interact with to find a specific name
 const searchBar = `
    <label for="search" class="student-search">
       <span>Search by name</span>
@@ -85,12 +82,12 @@ const searchBar = `
    </label>`;
 document.querySelector('.header').insertAdjacentHTML('beforeend', searchBar);
 
-// Neccesary variables for nesting the users action into the search bar, as well as clicking the "search button"
+// Neccesary variables for nesting the users action into the search bar, as well as for clicking the "search button"
 const search = document.querySelector('#search');
 const submit = document.querySelector('.student-search button');
 let studentMatches = [];
 
-//
+// A function to take and store the user name and info into the array of studentMatches as long as the user input contains the correct name data
 function searchForStudents (searchInput, names) {
    studentMatches = [];
    for (i = 0; i < names.length; i++){
@@ -101,5 +98,29 @@ function searchForStudents (searchInput, names) {
    }
 }
 
+// an event 'click' listener that calls the searchforStudents function to insert the proper student data into the array, if no matches are found then the function will return an error message
+submit.addEventListener('click', () => {
+   searchForStudents(search, data);
+   showPage(studentMatches, 1);
+   addPagination(studentMatches);
+   const header = document.querySelector('h2');
+   if (studentMatches.length === 0) {
+      header.innerText = 'No results found.';
+   } else {
+      header.innerText = 'STUDENTS';
+   }
+});
 
+// Practicaly the same code as above, but this listens for key strokes instead of clicks
+search.addEventListener('keyup', () => {
+   searchForStudents(search, data);
+   showPage(studentMatches, 1);
+   addPagination(studentMatches);
+   const header = document.querySelector('h2');
+   if (studentMatches.length === 0) {
+      header.innerText = 'No results found.';
+   } else {
+      header.innerText = 'STUDENTS';
+   }
+});
 
