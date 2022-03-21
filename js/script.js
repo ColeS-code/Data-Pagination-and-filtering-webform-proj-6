@@ -4,7 +4,7 @@ Treehouse Techdegree: Data Pagination and Filtering
 
 
 
-// sets the number of items per page
+// sets the number of items
 let numOfItems = 9;
 
 // This function creates and inserts the neccessary elements needed to display a list/page, of nine students
