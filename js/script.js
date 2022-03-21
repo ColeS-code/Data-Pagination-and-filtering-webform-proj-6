@@ -82,7 +82,7 @@ const searchBar = `
    </label>`;
 document.querySelector('.header').insertAdjacentHTML('beforeend', searchBar);
 
-// Neccesary variables for nesting the users action into the search bar, as well as for clicking the "search button"
+// Neccessary variables for nesting the users action into the search bar, as well as for clicking the "search button"
 const search = document.querySelector('#search');
 const submit = document.querySelector('.student-search button');
 let studentMatches = [];
