@@ -3,18 +3,8 @@ Treehouse Techdegree: Data Pagination and Filtering
 */
 
 
-
 /*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab
-   Reach out in your Slack community if you have questions
-*/
-
-
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
+This function creates and inserts the neccessary elements needed to display a list or page, of nine students
 */
 function showPage(list, page) {
    const startIndex = ( page * numOfItems ) - numOfItems;
@@ -43,8 +33,7 @@ function showPage(list, page) {
 
 
 /*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
+A function to create and insert/append the elements needed for the pagination buttons
 */
 function addPagination (list) {
    const numOfPages = Math.ceil(list.length / numOfItems);
@@ -77,11 +66,17 @@ function addPagination (list) {
 }
 
 
-// Call functions
-showPage();
-addPagination();
+// Calls both functions above
+showPage(data, 1);
+addPagination(data);
 
-//
+
+
+
+// code for "Exceeds Expectations" -
+
+
+// creates a search bar that the user can interact with to find a specific name
 const searchBar = `
    <label for="search" class="student-search">
       <span>Search by name</span>
@@ -90,7 +85,21 @@ const searchBar = `
    </label>`;
 document.querySelector('.header').insertAdjacentHTML('beforeend', searchBar);
 
-//
+// Neccesary variables for nesting the users action into the search bar, as well as clicking the "search button"
 const search = document.querySelector('#search');
 const submit = document.querySelector('.student-search button');
 let studentMatches = [];
+
+//
+function searchForStudents (searchInput, names) {
+   studentMatches = [];
+   for (i = 0; i < names.length; i++){
+      const studentName = names[i].name.first.toLowerCase() + ' ' + names[i].name.last.toLowerCase();
+      if (studentName.includes(searchInput.value.toLowerCase()) ) {
+         studentMatches.push(names[i]);
+      }
+   }
+}
+
+
+
